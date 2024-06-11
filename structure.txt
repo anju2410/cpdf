@@ -1,0 +1,1575 @@
+Structures
+Structure is a user-defined datatype in C language which allows us to combine data of different types together. Structure helps to construct a complex data type which is more meaningful. It is somewhat similar to an Array, but an array holds data of similar type only. But structure on the other hand, can store data of any type, which is practical more useful.
+
+For example: If I have to write a program to store Student information, which will have Student's name, age, branch, permanent address, father's name etc, which included string values, integer values etc, how can I use arrays for this problem, I will require something which can hold data of different types together.
+
+In structure, data is stored in form of records.
+
+Defining a structure
+struct keyword is used to define a structure. struct defines a new data type which is a collection of primary and derived data types.
+
+Syntax:
+
+struct [structure_tag]
+{
+    //member variable 1
+    //member variable 2
+    //member variable 3
+    ...
+}[structure_variables];
+
+As you can see in the syntax above, we start with the struct keyword, then it's optional to provide your structure a name, we suggest you to give it a name, then inside the curly braces, we have to mention all the member variables, which are nothing but normal C language variables of different types like int, float, array etc.
+
+After the closing curly brace, we can specify one or more structure variables, again this is optional.
+
+Note: The closing curly brace in the structure type declaration must be followed by a semicolon(;).
+
+Example of Structure
+struct Student
+{
+    char name[25];
+    int age;
+    char branch[10];
+    // F for female and M for male
+    char gender;
+};
+Here struct Student declares a structure to hold the details of a student which consists of 4 data fields, namely name, age, branch and gender. These fields are called structure elements or members.
+
+Each member can have different datatype, like in this case, name is an array of char type and age is of int type etc. Student is the name of the structure and is called as the structure tag.
+
+Declaring Structure Variables
+It is possible to declare variables of a structure, either along with structure definition or after the structure is defined. Structure variable declaration is similar to the declaration of any normal variable of any other datatype. Structure variables can be declared in following two ways:
+
+1) Declaring Structure variables separately
+struct Student
+{
+    char name[25];
+    int age;
+    char branch[10];
+    //F for female and M for male
+    char gender;
+};
+
+struct Student S1, S2;      //declaring variables of struct Student
+
+2) Declaring Structure variables with structure definition
+struct Student
+{
+    char name[25];
+    int age;
+    char branch[10];
+    //F for female and M for male
+    char gender;
+}S1, S2;
+------------------------------------------------------------------------------
+Declaration and initialization of structures
+
+The general form of a structure declaration is as follows −
+
+datatype member1;
+struct tagname{
+   datatype member2;
+   datatype member n;
+};
+Here,
+
+struct is a keyword.
+tagname specifies the name of structure.
+member1, member2 specifies the data items that make up structure.
+For example,
+
+struct book{
+   int pages;
+   char author [30];
+   float price;
+};
+Structure variables
+There are three methods of declaring structure variables, which are as follows −
+
+First method
+
+struct book{
+   int pages;
+   char author[30];
+   float price;
+}b;
+
+
+Second method
+
+struct{
+   int pages;
+   char author[30];
+   float price;
+}b;
+
+Third method
+
+struct book{
+   int pages;
+   char author[30];
+   float price;
+};
+struct book b;
+Initialization and accessing of structures
+
+The link between a member and a structure variable is established by using a member operator (or) a dot operator.
+
+Initialization can be done in the following methods −
+
+First method
+
+struct book{
+   int pages;
+   char author[30];
+   float price;
+} b = {100, “balu”, 325.75};
+Second method
+
+struct book{
+   int pages;
+   char author[30];
+   float price;
+};
+struct book b = {100, “balu”, 325.75};
+Third method by using a member operator
+
+struct book{
+   int pages;
+   char author[30];
+   float price;
+} ;
+struct book b;
+b. pages = 100;
+strcpy (b.author, “balu”);
+b.price = 325.75;
+-----------------------------------------------------------------------------
+Accessing Structure Members
+Structure members can be accessed and assigned values in a number of ways. Structure members have no meaning individually without the structure. In order to assign a value to any structure member, the member name must be linked with the structure variable using a dot . operator also called period or member access operator.
+
+For example:
+#include<stdio.h>
+#include<string.h>
+
+struct Student
+{
+    char name[25];
+    int age;
+    char branch[10];
+    //F for female and M for male
+    char gender;
+};
+
+void main()
+{
+    struct Student s1;
+    clrscr();
+    /*
+        s1 is a variable of Student type and 
+        age is a member of Student
+    */
+    s1.age = 18;
+    /*
+        using string function to add name
+    */
+    strcpy(s1.name, "Viraaj");
+    /*
+        displaying the stored values
+    */
+    printf("Name of Student 1: %s\n", s1.name);
+    printf("Age of Student 1: %d\n", s1.age);
+    
+    getch();
+}
+
+Output: 	
+Name of Student 1: Viraaj
+Age of Student 1: 18
+
+We can also use scanf() to give values to structure members through terminal.
+
+scanf(" %s ", s1.name);
+scanf(" %d ", &s1.age);
+-------------------------------------------------------------
+Structure Initialization
+Like a variable of any other datatype, structure variable can also be initialized at compile time.
+
+struct Patient
+{
+    float height;
+    int weight;  
+    int age; 
+};
+
+struct Patient p1 = { 180.75 , 73, 23 };    //initialization
+
+OR,
+
+struct Patient p1;
+p1.height = 180.75;     //initialization of each member separately
+p1.weight = 73;
+p1.age = 23;
+
+----------------------------------------------------------
+;Ex:
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+struct student{
+	int rollno;
+	char name[10];
+	int m1;
+	int m2;
+	int m3;
+};
+void main()
+{
+	//struct student s;
+	struct student s = {21,"Rohan",87,85,90};
+	clrscr();
+	/*printf("Enter student roll no:");
+	scanf("%d",&s.rollno);
+	fflush(stdin);
+	printf("Enter name of student:");
+	gets(s.name);
+	printf("Enter student marks1:");
+	scanf("%d",&s.m1);
+	printf("Enter student marks2:");
+	scanf("%d",&s.m2);
+	printf("Enter student marks3:");
+	scanf("%d",&s.m3);
+	s.rollno = 1;
+	strcpy(s.name,"Rahul");
+	s.m1=90;
+	s.m2=80;
+	s.m3=86;*/
+	printf("\nStudent detail:");
+	printf("\nRoll No: %d",s.rollno);
+	printf("\nName: %s",s.name);
+	printf("\nMarks 1: %d",s.m1);
+	printf("\nMarks 2: %d",s.m2);
+	printf("\nMarks 3: %d",s.m3);
+	getch();
+}
+
+====================================================================
+
+Nested Structure (Structure Within Structure) :
+we can have members of a structure itself as a structure. This is also referred to as structure within structure and such types of structures are known as nested structure.
+
+Nested Structure Example
+Consider the following scenario:
+
+
+/* normal structure */
+struct address
+{
+ int houseno;
+ char street[20];
+ int stateno;
+};
+
+/* nested structure */
+struct student
+{
+ char name[30];
+ int roll;
+ struct address adr; /* structure within structure or nested structure */
+};
+
+struct student  st; /* structure variable */
+In the above scenario, address is normal structure which contains three members houseno, street and stateno. But, student is nested structure because it contains member address which is of type struct.
+
+Understanding Nested Structure
+In above example, structure address is defined first with member houseno, street & stateno. This is normal structure i.e. there is no nesting. But, the structure student having memeber name, roll & adr is nested structure because the member adr is type of another user created structure. So, structure student is nested because of member adr.
+
+Accessing Elements in Nested Structure
+The elements of nested structures are accessed from outermost to innermost with the help of . (dot) operator. For example, to access houseno, we use st.adr.houseno, similarly for street, we use st.adr.street, and so on.
+
+C Program: Nested Structure Example
+
+#include<stdio.h>
+
+/* Declaration of structure */
+struct address
+{
+ int houseno;
+ char street[20];
+ int stateno;
+};
+
+/* Declaration of structure */
+struct student
+{
+ char name[30];
+ int roll;
+ struct address adrs;   /* Nested structure */
+};
+
+int main()
+{
+ struct student stud;
+
+ printf("Enter name and roll number of student:\n");
+ scanf("%s%d",stud.name, &stud.roll);
+ printf("Enter street name, house number and state number:\n");
+ scanf("%s%d%d",stud.adrs.street, &stud.adrs.houseno, &stud.adrs.stateno);
+ printf("Student detail is:\n");
+ printf("Name: %s\tRoll: %d\n", stud.name, stud.roll);
+ printf("Address:%s, House no. -%d, state: %d",stud.adrs.street, stud.adrs.houseno, stud.adrs.stateno);
+ 
+ return 0;
+}
+The output of the above program is:
+
+Enter name and roll number of student:
+Ramesh ↲
+17 ↲
+Enter street name, house number and state number:
+Jwagal ↲
+78 ↲
+3 ↲
+Student detail is:
+Name: Ramesh             Roll: 17
+Address: Jwagal, House no. – 78, state: 3 
+
+
+
+====================================================================
+Array of Structure
+We can also declare an array of structure variables. in which each element of the array will represent a structure variable. 
+
+An array is a collection of data items of the same type. Each element of the array can be int, char, float, double, or even a structure. We have seen that a structure allows elements of different data types to be grouped together under a single name. This structure can then be thought of as a new data type in itself. So, an array can comprise elements of this new data type. An array of structures finds its applications in grouping the records together and provides for fast accessing.
+
+
+Example : struct employee emp[5];
+
+The below program defines an array emp of size 5. Each element of the array emp is of type Employee.
+
+#include<stdio.h>
+
+struct Employee
+{
+    char ename[10];
+    int sal;
+};
+
+
+void main()
+{
+    struct Employee emp[5];
+    int i, j;
+    clrscr();
+    for(i = 0; i < 3; i++)
+    {
+        printf("\nEnter %dst Employee record:\n", i+1);
+        printf("\nEmployee name:\t");
+        scanf("%s", emp[i].ename);
+        printf("\nEnter Salary:\t");
+        scanf("%d", &emp[i].sal);
+    }
+    printf("\nDisplaying Employee record:\n");
+    for(i = 0; i < 3; i++)
+    {
+        printf("\nEmployee name is %s", emp[i].ename);
+        printf("\nSlary is %d", emp[i].sal);
+    }
+    getch();
+}
+--------------------------------------------------------------------------------------------------
+Structure within Array:
+
+A structure is a data type  that allows a group of related variables to be treated as a single unit instead of separate entities. A structure may contain elements of different data types – int, char, float, double, etc. It may also contain an array as its member. Such an array is called an array within a structure. An array within a structure is a member of the structure and can be accessed just as we access other elements of the structure.
+
+
+Ex:
+#include<stdio.h>
+#include<conio.h>
+
+struct student
+{
+	int rollNumber;
+	char name[20];
+	int mark[3];
+	int total;
+	float percentage;
+	char grade;
+};
+
+void main()
+{
+	struct student s;
+	int i;
+	clrscr();
+	i = 0;
+	printf("\n Enter the details of student");
+	printf("\n Enter the roll number : ");
+	scanf("%d",&s.rollNumber);
+	fflush(stdin);
+	printf("\n Enter the name of the student : ");
+	gets(s.name);
+	printf("\n Enter the marks of subject : ");
+	for(i=0 ; i<3 ; i++)
+	{
+
+		scanf("%d",&s.mark[i]);
+	}
+		s.total = 0;
+	for(i=0 ; i<3 ; i++)
+	{
+		s.total = s.total + s.mark[i];
+	}
+	s.percentage = (float)s.total / 3;
+	printf("\n Display the records of student ");
+	printf("\n Roll Number : %d",s.rollNumber);
+	printf("\n Name : %s",s.name);
+	for(i=0 ; i<3 ; i++)
+	{
+		printf("\n Marks of %d subject is : %d",i+1,s.mark[i]);
+	}
+	printf("\n Total : %d",s.total);
+	printf("\n Percentage : %f",s.percentage);
+
+	getch();
+}
+
+
+
+-----------------------------------------------------------------------------------------------
+Nested Structures
+Nesting of structures, is also permitted in C language. Nested structures means, that one structure has another stucture as member variable.
+Ex:
+
+struct Student
+{
+    char name[30];
+    int age;
+    /* here Address is a structure */
+    struct Address
+    {
+        char[50] locality;
+        char[50] city;
+        int pincode;		
+    }addr;
+};
+--------------------------------------------------------
+Structure as Function Arguments
+We can pass a structure as a function argument just like we pass any other variable or an array as a function argument.
+
+passing structure to functions
+	-> pass entire structure or pass individual members
+	-> both class Call by Value
+
+Syntax:
+
+return_type function name(struct struct_name);
+function_name(struct_variable);
+return_type function_name(struct struct_name struct_variable)
+{
+	............
+	............
+	return(expression);
+}//function defination
+
+Ex:
+	void print(struct S);  //function declaration
+	print(a);
+	Void (print(struct S s1)) //function defination
+
+
+#include<stdio.h>
+
+struct Student
+{
+    char name[10];
+    int roll;
+};
+
+void show(struct Student st);
+
+void main()
+{
+    struct Student std;
+    printf("\nEnter Student record:\n");
+    printf("\nStudent name:\t");
+    scanf("%s", std.name);
+    printf("\nEnter Student rollno.:\t");
+    scanf("%d", &std.roll);
+    show(std);
+}
+
+void show(struct Student st)
+{
+    printf("\nstudent name is %s", st.name);
+    printf("\nroll is %d", st.roll);
+}
+=============================================================
+typedef:
+The typedef is a keyword used in C programming to provide some meaningful names to the already existing variable in the C program. It behaves similarly as we define the alias for the commands. In short, we can say that this keyword is used to redefine the name of an already existing variable.
+
+Syntax of typedef
+typedef <existing_name> <alias_name>  
+In the above syntax, 'existing_name' is the name of an already existing variable while 'alias name' is another name given to the existing variable.
+
+For example, suppose we want to create a variable of type unsigned int, then it becomes a tedious task if we want to declare multiple variables of this type. To overcome the problem, we use a typedef keyword.
+
+typedef unsigned int unit;  
+In the above statements, we have declared the unit variable of type unsigned int by using a typedef keyword.
+
+Now, we can create the variables of type unsigned int by writing the following statement:
+
+unit a, b;   
+instead of writing:
+
+unsigned int a, b;  
+Till now, we have observed that the typedef keyword provides a nice shortcut by providing an alternative name for an already existing variable. This keyword is useful when we are dealing with the long data type especially, structure declarations.
+
+example.
+
+#include <stdio.h>  
+int main()  
+{  
+typedef unsigned int unit;  
+unit i,j;  
+i=10;  
+j=20;  
+printf("Value of i is :%d",i);  
+printf("\nValue of j is :%d",j);  
+return 0;  
+}  
+Output
+
+Value of i is :10 
+Value of j is :20
+
+--------------------------------------------------------------------------------------------------
+Using typedef with structures
+Consider the below structure declaration:
+
+struct student  
+{  
+char name[20];  
+int age;  
+};  
+struct student s1;   
+In the above structure declaration, we have created the variable of student type by writing the following statement:
+
+struct student s1;  
+The above statement shows the creation of a variable, i.e., s1, but the statement is quite big. To avoid such a big statement, we use the typedef keyword to create the variable of type student.
+
+struct student  
+{  
+char name[20];  
+int age;  
+};  
+typedef struct student stud;  
+stud s1, s2;   
+In the above statement, we have declared the variable stud of type struct student. Now, we can use the stud variable in a program to create the variables of type struct student.
+
+The above typedef can be written as:
+
+typedef struct student  
+{  
+char name[20];  
+int age;   
+} stud;  
+stud s1,s2;  
+From the above declarations, we conclude that typedef keyword reduces the length of the code and complexity of data types. It also helps in understanding the program.
+
+Let's see another example where we typedef the structure declaration.
+
+#include <stdio.h>  
+typedef struct student  
+{  
+char name[20];  
+int age;  
+}stud;  
+int main()  
+{  
+stud s1;  
+printf("Enter the details of student s1: ");  
+printf("\nEnter the name of the student:");  
+scanf("%s",&s1.name);  
+printf("\nEnter the age of student:");  
+scanf("%d",&s1.age);  
+printf("\n Name of the student is : %s", s1.name);  
+printf("\n Age of the student is : %d", s1.age);  
+return 0;  
+}  
+Output
+
+Enter the details of student s1: 
+Enter the name of the student: Peter 
+Enter the age of student: 28 
+Name of the student is : Peter 
+Age of the student is : 28 
+------------------------------------------------------------------------------------
+Using typedef with pointers
+We can also provide another name or alias name to the pointer variables with the help of the typedef.
+
+For example, we normally declare a pointer, as shown below:
+
+int* ptr;  
+We can rename the above pointer variable as given below:
+
+typedef int* ptr;  
+In the above statement, we have declared the variable of type int*. Now, we can create the variable of type int* by simply using the 'ptr' variable as shown in the below statement:
+
+ptr p1, p2 ;  
+
+------------------------------------------------------------------------------------
+Array of Structures
+Why use an array of structures?
+ However, the complexity of the program will be increased if there are 20 students. In that case, we will have to declare 20 different structure variables and store them one by one. This will always be tough since we will have to declare a variable every time we add a student. Remembering the name of all the variables is also a very tricky task. However, c enables us to declare an array of structures by using which, we can avoid declaring the different structure variables; instead we can make a collection containing all the structures that store the information of different entities.
+
+An array of structres in C can be defined as the collection of multiple structures variables where each variable contains information about different entities. The array of structures in C are used to store information about multiple entities of different data types. The array of structures is also known as the collection of structures.
+
+#include<stdio.h>  
+#include<conio.h>
+#include <string.h>    
+struct student{    
+int rollno;    
+char name[10];    
+};    
+void main()
+{    
+
+	int i;    
+	struct student st[5];  
+	clrscr();  
+	printf("Enter Records of 5 students");    
+	for(i=0;i<5;i++){    
+	printf("\nEnter Rollno:");    
+	scanf("%d",&st[i].rollno);    
+	printf("\nEnter Name:");    
+	scanf("%s",&st[i].name);  
+}    
+printf("\nStudent Information List:");    
+for(i=0;i<5;i++)
+{    
+	printf("\nRollno:%d, Name:%s",st[i].rollno,st[i].name);    
+}    
+   return 0;    
+}    
+Output:
+
+Enter Records of 5 students
+Enter Rollno:1
+Enter Name:Sonoo
+Enter Rollno:2
+Enter Name:Ratan
+Enter Rollno:3
+Enter Name:Vimal
+Enter Rollno:4
+Enter Name:James
+Enter Rollno:5
+Enter Name:Sarfraz
+
+Student Information List:
+Rollno:1, Name:Sonoo
+Rollno:2, Name:Ratan
+Rollno:3, Name:Vimal
+Rollno:4, Name:James
+Rollno:5, Name:Sarfraz
+
+-----------------------------------------------------------------------------------------------------------------
+Nested Structure in C
+C provides us the feature of nesting one structure within another structure by using which, complex data types are created. For example, we may need to store the address of an entity employee in a structure. The attribute address may also have the subparts as street number, city, state, and pin code. Hence, to store the address of the employee, we need to store the address of the employee into a separate structure and nest the structure address into the structure employee. 
+
+#include<stdio.h>  
+#include<conio.h>
+struct address   
+{  
+    char city[20];  
+    int pin;  
+    char phone[14];  
+};  
+struct employee  
+{  
+    char name[20];  
+    struct address add;  
+};  
+void main ()  
+{  
+    struct employee emp;  
+    clrscr();
+    printf("Enter employee information?\n");  
+    scanf("%s %s %d %s",emp.name,emp.add.city, &emp.add.pin, &emp.add.phone);  
+    printf("Printing the employee information....\n");  
+    printf("name: %s\nCity: %s\nPincode: %d\nPhone: %s",emp.name,emp.add.city,emp.add.pin,emp.add.phone);  
+}  
+Output
+
+Enter employee information?
+
+Arun            
+
+Delhi           
+
+110001       
+
+1234567890    
+
+Printing the employee information....   
+
+name: Arun      
+
+City: Delhi  
+
+Pincode: 110001
+
+Phone: 1234567890
+
+---------------------------------------------------------------------------------
+
+The structure can be nested in the following ways.
+
+By separate structure
+By Embedded structure
+1) Separate structure
+Here, we create two structures, but the dependent structure should be used inside the main structure as a member. Consider the following example.
+
+struct Date  
+{  
+   int dd;  
+   int mm;  
+   int yyyy;   
+};  
+struct Employee  
+{     
+   int id;  
+   char name[20];  
+   struct Date doj;  
+}emp1;  
+As you can see, doj (date of joining) is the variable of type Date. Here doj is used as a member in Employee structure. In this way, we can use Date structure in many structures.
+
+2) Embedded structure
+The embedded structure enables us to declare the structure inside the structure. Hence, it requires less line of codes but it can not be used in multiple data structures. Consider the following example.
+
+struct Employee  
+{     
+   int id;  
+   char name[20];  
+   struct Date  
+    {  
+      int dd;  
+      int mm;  
+      int yyyy;   
+    }doj;  
+}emp1;  
+Accessing Nested Structure
+We can access the member of the nested structure by Outer_Structure.Nested_Structure.member as given below:
+
+e1.doj.dd  
+e1.doj.mm  
+e1.doj.yyyy  
+C Nested Structure example
+Let's see a simple example of the nested structure in C language.
+
+#include <stdio.h>  
+#include <string.h>  
+struct Employee  
+{     
+   int id;  
+   char name[20];  
+   struct Date  
+    {  
+      int dd;  
+      int mm;  
+      int yyyy;   
+    }doj;  
+}e1;  
+int main( )  
+{  
+   //storing employee information  
+   e1.id=101;  
+   strcpy(e1.name, "Sonoo Jaiswal");//copying string into char array  
+   e1.doj.dd=10;  
+   e1.doj.mm=11;  
+   e1.doj.yyyy=2014;  
+  
+   //printing first employee information  
+   printf( "employee id : %d\n", e1.id);  
+   printf( "employee name : %s\n", e1.name);  
+   printf( "employee date of joining (dd/mm/yyyy) : %d/%d/%d\n", e1.doj.dd,e1.doj.mm,e1.doj.yyyy);  
+   return 0;  
+}  
+Output:
+
+employee id : 101
+employee name : Sonoo Jaiswal
+employee date of joining (dd/mm/yyyy) : 10/11/2014
+Passing structure to function
+Just like other variables, a structure can also be passed to a function. We may pass the structure members into the function or pass the structure variable at once. Consider the following example to pass the structure variable employee to a function display() which is used to display the details of an employee.
+
+#include<stdio.h>  
+struct address   
+{  
+    char city[20];  
+    int pin;  
+    char phone[14];  
+};  
+struct employee  
+{  
+    char name[20];  
+    struct address add;  
+};  
+void display(struct employee);  
+void main ()  
+{  
+    struct employee emp;  
+    printf("Enter employee information?\n");  
+    scanf("%s %s %d %s",emp.name,emp.add.city, &emp.add.pin, emp.add.phone);  
+    display(emp);  
+}  
+void display(struct employee emp)  
+{  
+  printf("Printing the details....\n");  
+  printf("%s %s %d %s",emp.name,emp.add.city,emp.add.pin,emp.add.phone);  
+}  
+===========================================================================
+Union in C
+Union can be defined as a user-defined data type which is a collection of different variables of different data types in the same memory location. The union can also be defined as many members, but only one member can contain a value at a particular point in time.
+
+Union is a user-defined data type, but unlike structures, they share the same memory location.
+
+When we define the union, then we found that union is defined in the same way as the structure is defined but the difference is that union keyword is used for defining the union data type, whereas the struct keyword is used for defining the structure. The union contains the data members, i.e., 'a' and 'b', when we check the addresses of both the variables then we found that both have the same addresses. It means that the union members share the same memory location.
+
+syntax:
+
+union [union tag] {
+   member definition;
+   member definition;
+   ...
+   member definition;
+} [one or more union variables];
+
+ex:
+union Data {
+   int i;
+   float f;
+   char str[20];
+} d; 
+------------------------------------------------------------------------
+Ex:
+union abc  
+{  
+   int a;  
+   char b;   
+}var;  
+int main()  
+{  
+  var.a = 66;  
+  printf("\n a = %d", var.a);  
+  printf("\n b = %c", var.b);  
+}   
+
+In the above code, union has two members, i.e., 'a' and 'b'. The 'var' is a variable of union abc type. In the main() method, we assign the 66 to 'a' variable, so var.a will print 66 on the screen. Since both 'a' and 'b' share the memory location, var.b will print 'B' (ascii code of 66).
+
+-------------------------------------------------------------------------
+Ex:
+#include <stdio.h>
+#include <string.h>
+ 
+union Data {
+   int i;
+   float f;
+   char str[20];
+};
+ 
+int main( ) {
+
+   union Data data;        
+
+   printf( "Memory size occupied by data : %d\n", sizeof(data));
+
+   return 0;
+}
+ 
+Output:
+Memory size occupied by data : 20
+
+----------------------------------------------------------------------
+Accessing Union Members
+To access any member of a union, we use the member access operator (.). The member access operator is coded as a period between the union variable name and the union member that we wish to access. You would use the keyword union to define variables of union type. 
+
+Ex:
+
+#include <stdio.h>
+#include <string.h>
+ 
+union Data {
+   int i;
+   float f;
+   char str[20];
+};
+ 
+int main( ) {
+
+   union Data data;        
+
+   data.i = 10;
+   data.f = 220.5;
+   strcpy( data.str, "C Programming");
+
+   printf( "data.i : %d\n", data.i);
+   printf( "data.f : %f\n", data.f);
+   printf( "data.str : %s\n", data.str);
+
+   return 0;
+}
+
+Output:
+data.i : 1917853763
+data.f : 4122360580327794860452759994368.000000
+data.str : C Programming
+
+Here, we can see that the values of i and f members of union got corrupted because the final value assigned to the variable has occupied the memory location and this is the reason that the value of str member is getting printed very well.
+
+ex2:
+#include <stdio.h>
+#include <string.h>
+ union Data {
+   int i;
+   float f;
+   char str[20];
+};
+ int main( ) {
+
+   union Data data;        
+
+   data.i = 10;
+   printf( "data.i : %d\n", data.i);
+   
+   data.f = 220.5;
+   printf( "data.f : %f\n", data.f);
+   
+   strcpy( data.str, "C Programming");
+   printf( "data.str : %s\n", data.str);
+
+   return 0;
+}
+
+output:
+data.i : 10
+data.f : 220.500000
+data.str : C Programming
+
+Here, all the members are getting printed very well because one member is being used at a time.
+==========================================================================
+Similarities between Structure and Union
+The following are the similarities between structure and union:
+
+Both structure and union are the custom data types that store different types of data together as a single entity
+The structure and union members can be objects of any type, such as other structures, unions, or arrays.
+Both structures or unions can be passed by value to a function and returned to the value by functions. 
+The argument will need to have the same type as the function parameter.
+To access members, we use the ‘.’ operator.
+
+
+Difference between Structure and Union
+Both a structure and a union combine different information related to a given entity. The main difference between union and structure is how specific information is stored and accessed. The table below highlights the key differences between structure and union:
+
+Structure							Union
+We use the struct statement to define a structure.	                 		We use the union keyword to define a union.
+Every member is assigned a unique memory location.              		 All the data members share a memory location.
+Change in the value of one data member does not affect 
+other data members in the structure.	                                  		 Change in the value of one data member affects the value of other data members.
+You can initialize multiple members at a time.	                  		You can initialize only the first member at once.
+A structure can store multiple values of the different members.		A union stores one value at a time for all of its members
+A structure’s total size is the sum of the size of every data member.	A union’s total size is the size of the largest data member.
+Users can access or retrieve any member at a time.			You can access or retrieve only one member at a time.
+
+===========================================================================
+Dynamic memory allocation in C
+The concept of dynamic memory allocation in c language enables the C programmer to allocate memory at runtime. Dynamic memory allocation in c language is possible by 4 functions of stdlib.h header file.
+
+malloc()
+calloc()
+realloc()
+free()
+Before learning above functions, let's understand the difference between static memory allocation and dynamic memory allocation.
+
+static memory allocation		dynamic memory allocation
+memory is allocated at compile time.	memory is allocated at run time.
+memory can't be increased while 
+executing program.			memory can be increased while executing 				program.
+used in array.			used in linked list.
+
+
+Now let's have a quick look at the methods used for dynamic memory allocation.
+
+malloc()	allocates single block of requested memory.
+calloc()	allocates multiple block of requested memory.
+realloc()	reallocates the memory occupied by malloc() or calloc() functions.
+free()	frees the dynamically allocated memory.
+malloc() 	function in C
+
+The malloc() function allocates single block of requested memory.
+
+It doesn't initialize memory at execution time, so it has garbage value initially.
+
+It returns NULL if memory is not sufficient.
+
+The syntax of malloc() function is given below:
+
+ptr=(cast-type*)malloc(byte-size)  
+Let's see the example of malloc() function.
+
+#include<stdio.h>  
+#include<stdlib.h>  
+int main()
+{  
+    int n,i,*ptr,sum=0;    
+    printf("Enter number of elements: ");    
+    scanf("%d",&n);    
+    ptr=(int*)malloc(n*sizeof(int));  //memory allocated using malloc    
+    if(ptr==NULL)                         
+    {    
+        printf("Sorry! unable to allocate memory");    
+        exit(0);    
+    }    
+    printf("Enter elements of array: ");    
+    for(i=0;i<n;++i)    
+    {    
+        scanf("%d",ptr+i);    
+        sum+=*(ptr+i);    
+    }    
+    printf("Sum=%d",sum);    
+    free(ptr);     
+	return 0;  
+}    
+Output
+
+Enter elements of array: 3
+Enter elements of array: 10
+10
+10
+Sum=30
+-----
+calloc() function in C
+The calloc() function allocates multiple block of requested memory.
+
+It initially initialize all bytes to zero.
+
+It returns NULL if memory is not sufficient.
+
+The syntax of calloc() function is given below:
+
+ptr=(cast-type*)calloc(number, byte-size)  
+Let's see the example of calloc() function.
+
+#include<stdio.h>  
+#include<stdlib.h>  
+int main(){  
+ int n,i,*ptr,sum=0;    
+    printf("Enter number of elements: ");    
+    scanf("%d",&n);    
+    ptr=(int*)calloc(n,sizeof(int));  //memory allocated using calloc    
+    if(ptr==NULL)                         
+    {    
+        printf("Sorry! unable to allocate memory");    
+        exit(0);    
+    }    
+    printf("Enter elements of array: ");    
+    for(i=0;i<n;++i)    
+    {    
+        scanf("%d",ptr+i);    
+        sum+=*(ptr+i);    
+    }    
+    printf("Sum=%d",sum);    
+    free(ptr);    
+return 0;  
+}    
+Output
+
+Enter elements of array: 3
+Enter elements of array: 10
+10
+10
+Sum=30
+realloc() function in C
+If memory is not sufficient for malloc() or calloc(), you can reallocate the memory by realloc() function. In short, it changes the memory size.
+
+Let's see the syntax of realloc() function.
+
+ptr=realloc(ptr, new-size)  
+--------------------
+free() function in C
+The memory occupied by malloc() or calloc() functions must be released by calling free() function. Otherwise, it will consume memory until program exit.
+
+Let's see the syntax of free() function.
+
+free(ptr)  
+
+============================================================
+#include <stdio.h>
+int main()
+{
+float sum = 0.0, j = 1.0, i = 2.0;
+while (i/j > 0.0625)
+{
+	j = j + j;
+	sum = sum + i/j;
+	printf("%f\n", sum);
+}
+return 0;
+}
+
+Output:
+1.000000
+1.500000
+1.750000
+1.875000
+1.937500
+
+===============================================================
+
+enum:
+Enumeration or Enum in C is a special kind of data type defined by the user. It consists of constant integrals or integers that are given names by a user. 
+
+Syntax to Define Enum in C
+An enum is defined by using the ‘enum’ keyword in C, and the use of a comma separates the constants within. The basic syntax of defining an enum is:
+
+enum enum_name{int_const1, int_const2, int_const3, …. int_constN};
+
+In the above syntax, the default value of int_const1 is 0, int_const2 is 1, int_const3 is 2, and so on. However, you can also change these default values while declaring the enum. Below is an example of an enum named cars and how you can change the default values.
+
+enum cars{BMW, Ferrari, Jeep, Mercedes-Benz};
+
+Here, the default values for the constants are:
+
+BMW=0, Ferrari=1, Jeep=2, and Mercedes-Benz=3. However, to change the default values, you can define the enum as follows:
+
+BMW=0, Ferrari=1, Jeep=2, and Mercedes-Benz=3. However, to change the default values, you can define the enum as follows:
+
+enum cars{
+
+BMW=3,
+
+Ferrari=5,
+
+Jeep=0,
+
+Mercedes-Benz=1
+
+};
+
+
+Example:
+
+#include <stdio.h>  
+ enum weekdays{Sunday=1, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday};  
+ int main()  
+{  
+ enum weekdays w; // variable declaration of weekdays type  
+ w=Monday; // assigning value of Monday to w.  
+ printf("The value of w is %d",w);  
+    return 0;  
+}  
+
+
+output:
+
+The value of w is 2
+------------------------------
+Why do we use enum?
+The enum is used when we want our variable to have only a set of values. For example, we create a direction variable. As we know that four directions exist (North, South, East, West), so this direction variable will have four possible values. But the variable can hold only one value at a time. If we try to provide some different value to this variable, then it will throw the compilation error.
+
+===============================================================
+Enum vs. Macro in C
+Macro can also be used to define the name constants, but in case of an enum, all the name constants can be grouped together in a single statement.
+For example,
+# define pass 0;
+# define success 1;
+
+The above two statements can be written in a single statement by using the enum type.
+enum status{pass, success};
+The enum type follows the scope rules while macro does not follow the scope rules.
+In Enum, if we do not assign the values to the enum names, then the compiler will automatically assign the default value to the enum names. But, in the case of macro, the values need to be explicitly assigned.
+The type of enum in C is an integer, but the type of macro can be of any type.
+
+
+
+================================================================
+Pointer:   Pointer is a derived datatype.
+The pointer in C language is a variable which stores the address of another variable. This variable can be of type int, char, array, function, or any other pointer.
+
+
+ex:
+int n = 10;   
+int* p = &n; // Variable p of type pointer is pointing to the address of the variable n of type integer.   
+
+Declaring a pointer
+The pointer in c language can be declared using * (asterisk symbol). It is also known as indirection pointer used to dereference a pointer.
+
+int *a;//pointer to int  
+char *c;//pointer to char  
+----------------------------------------------------------------------------
+#include<stdio.h>  
+int main(){  
+int number=50;    
+int *p;      
+p=&number;//stores the address of number variable    
+printf("Address of p variable is %x \n",p); // p contains the address of the number therefore printing p gives the address of number.     
+printf("Value of p variable is %d \n",*p); // As we know that * is used to dereference a pointer therefore if we print *p, we will get the value stored at the address contained by p.    
+return 0;  
+}    
+
+-------------------------------------------------------------------------
+Pointer to array
+int arr[10];  
+int *p[10]=&arr; // Variable p of type pointer is pointing to the address of an integer array arr.  
+Pointer to a function
+void show (int);  
+void(*p)(int) = &display; // Pointer p is pointing to the address of a function  
+Pointer to structure
+struct st {  
+    int i;  
+    float f;  
+}ref;  
+struct st *p = &ref;  
+
+----------------------------------------------------------------------
+Advantage of pointer
+1) Pointer reduces the code and improves the performance, it is used to retrieving strings, trees, etc. and used with arrays, structures, and functions.
+
+2) We can return multiple values from a function using the pointer.
+
+3) It makes you able to access any memory location in the computer's memory.
+
+4) Pointers are used for dynamic memory allocation.
+
+5) used to create complex data structures like linked list, stacks, queues, graphs, trees etc.
+
+Usage of pointer
+There are many applications of pointers in c language.
+
+1) Dynamic memory allocation
+
+In c language, we can dynamically allocate memory using malloc() and calloc() functions where the pointer is used.
+
+2) Arrays, Functions, and Structures
+
+Pointers in c language are widely used in arrays, functions, and structures. It reduces the code and improves the performance.
+
+Address Of (&) Operator
+The address of operator '&' returns the address of a variable. But, we need to use %u to display the address of a variable.
+
+#include<stdio.h>  
+int main(){  
+int number=50;   
+printf("value of number is %d, address of number is %u",number,&number);    
+return 0;  
+}    
+
+------------------------------------------------------------------------------
+
+NULL Pointer
+A pointer that is not assigned any value but NULL is known as the NULL pointer. If you don't have any address to be specified in the pointer at the time of declaration, you can assign NULL value. It will provide a better approach.
+
+int *p=NULL;
+In the most libraries, the value of the pointer is 0 (zero).
+
+Pointer Program to swap two numbers without using the 3rd variable.
+#include<stdio.h>  
+int main(){  
+int a=10,b=20,*p1=&a,*p2=&b;  
+  
+printf("Before swap: *p1=%d *p2=%d",*p1,*p2);  
+*p1=*p1+*p2;  
+*p2=*p1-*p2;  
+*p1=*p1-*p2;  
+printf("\nAfter swap: *p1=%d *p2=%d",*p1,*p2);  
+  
+return 0;  
+}  
+Output
+
+Before swap: *p1=10 *p2=20
+After swap: *p1=20 *p2=10
+
+=============================================================================
+Dynamic Memory Allocation in C using malloc(), calloc(), free() and realloc():
+ the length (size) of the array above made is 9. But what if there is a requirement to change this length (size). For Example, 
+
+If there is a situation where only 5 elements are needed to be entered in this array. In this case, the remaining 4 indices are just wasting memory in this array. So there is a requirement to lessen the length (size) of the array from 9 to 5.
+Take another situation. In this, there is an array of 9 elements with all 9 indices filled. But there is a need to enter 3 more elements in this array. In this case, 3 indices more are required. So the length (size) of the array needs to be changed from 9 to 12.
+This procedure is referred to as Dynamic Memory Allocation in C.
+Therefore, C Dynamic Memory Allocation can be defined as a procedure in which the size of a data structure (like Array) is changed during the runtime.
+C provides some functions to achieve these tasks. There are 4 library functions provided by C defined under <stdlib.h> header file to facilitate dynamic memory allocation in C programming. They are: 
+malloc()
+calloc()
+free()
+realloc()
+Let’s look at each of them in greater detail.
+
+C malloc() method
+The “malloc” or “memory allocation” method in C is used to dynamically allocate a single large block of memory with the specified size. It returns a pointer of type void which can be cast into a pointer of any form. It doesn’t Initialize memory at execution time so that it has initialized each block with the default garbage value initially. 
+
+Syntax: 
+
+ptr = (cast-type*) malloc(byte-size)
+For Example:
+ptr = (int*) malloc(100 * sizeof(int));
+Since the size of int is 2 bytes, this statement will allocate 200 bytes of memory. And, the pointer ptr holds the address of the first byte in the allocated memory.
+
+If space is insufficient, allocation fails and returns a NULL pointer.
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+C calloc() method
+“calloc” or “contiguous allocation” method in C is used to dynamically allocate the specified number of blocks of memory of the specified type. it is very much similar to malloc() but has two different points and these are:
+It initializes each block with a default value ‘0’.
+It has two parameters or arguments as compare to malloc().
+
+Syntax: 
+
+ptr = (cast-type*)calloc(n, element-size);
+here, n is the no. of elements and element-size is the size of each element.
+For Example: 
+
+ptr = (float*) calloc(25, sizeof(float));
+This statement allocates contiguous space in memory for 25 elements each with the size of the float.
+ 
+If space is insufficient, allocation fails and returns a NULL pointer.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+C free() method
+“free” method in C is used to dynamically de-allocate the memory. The memory allocated using functions malloc() and calloc() is not de-allocated on their own. Hence the free() method is used, whenever the dynamic memory allocation takes place. It helps to reduce wastage of memory by freeing it.
+
+Syntax: 
+
+free(ptr);
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+C realloc() method
+“realloc” or “re-allocation” method in C is used to dynamically change the memory allocation of a previously allocated memory. In other words, if the memory previously allocated with the help of malloc or calloc is insufficient, realloc can be used to dynamically re-allocate memory. re-allocation of memory maintains the already present value and new blocks will be initialized with the default garbage value.
+
+Syntax: 
+
+ptr = realloc(ptr, newSize);
+
+where ptr is reallocated with new size 'newSize'.
+
+======================================================================================
+
+What is a File in C?
+A file refers to a source in which a program stores the information/data in the
+form of bytes of sequence on a disk (permanently). The content available on a
+file isn’t volatile like the compiler memory in C. But the program can perform
+various operations, such as creating, opening, reading a file, or even
+manipulating the data present inside the file. This process is known as file
+handling in C.
+Why Do We Need File Handling in C?
+There are times when the output generated out of a program after its
+compilation and running do not serve our intended purpose. In such cases, we
+might want to check the program’s output various times. Now, compiling and
+running the very same program multiple times becomes a tedious task for any
+programmer. It is exactly where file handling becomes useful.
+Let us look at a few reasons why file handling makes programming easier for
+all:
+● Reusability: File handling allows us to preserve the information/data
+generated after we run the program.
+● Saves Time: Some programs might require a large amount of input from
+their users. In such cases, file handling allows you to easily access a
+part of a code using individual commands.
+● Commendable storage capacity: When storing data in files, you can
+leave behind the worry of storing all the info in bulk in any program.
+● Portability: The contents available in any file can be transferred to
+another one without any data loss in the computer system. This saves a
+lot of effort and minimises the risk of flawed coding.
+Types of Files in a C Program
+When referring to file handling, we refer to files in the form of data files. Now,
+these data files are available in 2 distinct forms in the C language, namely:
+● Text Files
+● Binary Files
+Text Files
+The text files are the most basic/simplest types of files that a user can create
+in a C program. We create the text files using an extension .txt with the help of
+a simple text editor. In general, we can use notepads for the creation of .txt
+files. These files store info internally in ASCII character format, but when we
+open these files, the content/text opens in a human-readable form.
+Text files are, thus, very easy to access as well as use. But there’s one major
+disadvantage; it lacks security. Since a .txt file can be accessed easily,
+information isn’t very secure in it. Added to this, text files consume a very
+large space in storage.
+To solve these problems, we have a different type of file in C programs, known
+as binary files.
+Binary Files
+The binary files store info and data in the binary format of 0’s and 1’s (the
+binary number system). Thus, the files occupy comparatively lesser space in
+the storage. In simpler words, the binary files store data and info the same
+way a computer holds the info in its memory. Thus, it can be accessed very
+easily as compared to a text file.
+The binary files are created with the extension .bin in a program, and it
+overcomes the drawback of the text files in a program since humans can’t
+read it; only machines can. Thus, the information becomes much more secure.
+Thus, binary files are safest in terms of storing data files in a C program.
+Operators/Functions that We Use for File Handling in C
+We can use a variety of functions in order to open a file, read it, write more
+data, create a new file, close or delete a file, search for a file, etc. These are
+known as file handling operators in C.
+Here’s a list of functions that allow you to do so:
+Description of Function Function in
+Use
+used to open an existing file or a new file fopen()
+writing data into an available file fprintf()
+reading the data available in a file fscanf()
+writing any character into the program file fputc()
+reading the character from an available file fgetc()
+used to close the program file fclose()
+used to set the file pointer to the intended file
+position
+fseek()
+writing an integer into an available file fputw()
+used to read an integer from the given file fgetw()
+used for reading the current position of a file ftell()
+sets an intended file pointer to the file’s
+beginning itself
+rewind()
+Note: It is important to know that we must declare a file-type pointer when we
+are working with various files in a program. This helps establish direct
+communication between a program and the files.
+Here is how you can do it:
+FILE *fpointer;
+Out of all the operations/functions mentioned above, let us discuss some of
+the basic operations that we perform in the C language.
+Operations Done in File Handling
+The process of file handling enables a user to update, create, open, read, write,
+and ultimately delete the file/content in the file that exists on the C program’s
+local file system. Here are the primary operations that you can perform on a
+file in a C program:
+● Opening a file that already exists
+● Creating a new file
+● Reading content/ data from the existing file
+● Writing more data into the file
+● Deleting the data in the file or the file altogether
+Opening a File in the Program – to create and edit data
+We open a file with the help of the fopen() function that is defined in the
+header file- stdio.h.
+Here is the syntax that we follow when opening a file:
+ptr = fopen (“openfile” , “openingmode”);
+Let us take a look at an example for the same,
+fopen (“E:\\myprogram\\recentprogram.txt” , “w”);
+fopen (“E:\\myprogram\\previousprogram.bin” , “rb”);
+● Here, if we suppose that the file – recentprogram.txt doesn’t really exist
+in the E:\\myprogram location. Here, we have used the mode “w”. Thus,
+the first function will create a new file with the name recentprogram.txt
+and then open it for writing (since we have used the “w” mode).
+● The “w” here refers to writing mode. It allows a programmer to
+overwrite/edit and create the contents in a program file.
+● Now, let us take a look at the second binary previousprogram.bin file
+that is present in the E:\\myprogram location. Thus, the second function
+here will open the file (that already exists) for reading in the “rb” binary
+mode.
+● The “rb” refers to the reading mode. It only allows you to read a file, but
+not overwrite it. Thus, it will only read this available file in the program.
+Let us take a look at a few more opening modes used in the C programs:
+Opening Modes of C in Standard I/O of a Program
+Mode in
+Program
+Meaning of Mode When the file doesn’t
+exist
+r Open a file for reading the
+content.
+In case the file doesn’t
+exist in the location,
+then fopen() will return
+NULL.
+rb Open a file for reading the
+content in binary mode.
+In case the file doesn’t
+exist in the location,
+then fopen() will return
+NULL.
+w Open a file for writing the
+content.
+In case the file exists, its
+contents are
+overwritten.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+wb Open a file for writing the
+content in binary mode.
+In case the file exists,
+then its contents will get
+overwritten.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+a Open a file for appending
+the content.
+In case the file doesn’t
+exist in the location,
+Meaning, the data of the
+program is added to the
+file’s end in a program.
+then it will create a new
+file.
+ab Open a file for appending
+the content in binary mode.
+Meaning, the data of the
+program is added to the
+file’s end in a program in a
+binary mode.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+r+ Open a file for both writing
+and reading the content.
+In case the file doesn’t
+exist in the location,
+then fopen() will return
+NULL.
+rb+ Open a file for both writing
+and reading the content in
+binary mode.
+In case the file doesn’t
+exist in the location,
+then fopen() will return
+NULL.
+w+ Open a file for both writing
+and reading.
+In case the file exists, its
+contents are
+overwritten.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+wb+ Open a file for both writing
+and reading the content in
+binary mode.
+In case the file exists, its
+contents are
+overwritten.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+a+ Open a file for both
+appending and reading the
+content.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+ab+ Open a file for both
+appending and reading the
+content in binary mode.
+In case the file doesn’t
+exist in the location,
+then it will create a new
+file.
+How do we close a file?
+Once we write/read a file in a program, we need to close it (for both binary and
+text files). To close a file, we utilise the fclose() function in a program.
+Here is how the program would look like:
+fclose(fptr);
+In this case, the fptr refers to the file pointer that is associated with that file
+that needs to be closed in a program.
