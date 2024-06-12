@@ -1,0 +1,1045 @@
+All the statements starting with # (hash) symbol are known as preprocessor directives/commands therefore, #define and #include are also known as preprocessor directives. Preprocessor directives are executed before any other command in our program. In a C Program, we generally write all the preprocessor directives outside the main() function at the top of our C program. The #define directive is used to define constants or an expression in our C Program, while #include directive is used to include the content of header files in our C program.
+
+Header file, include,define:
+
+In C language, header files contain the set of predefined standard library functions. You request to use a header file in your program by including it with the C preprocessing directive “#include”. All the header file have a '. h' an extension.
+
+A header file contains: 
+ 
+
+Function definitions
+Data type definitions
+Macros
+It offers the above features by importing them into the program with the help of a preprocessor directive “#include”. These preprocessor directives are used for instructing compiler that these files need to be processed before compilation. 
+In C program should necessarily contain the header file which stands for standard input and output used to take input with the help of scanf() and printf() function respectively. 
+
+C Standard Library header files
+ C 
+The interface of C standard library is defined by the following collection of headers.
+
+<assert.h>	Conditionally compiled macro that compares its argument to zero
+<complex.h> (C99)	Complex number arithmetic
+<ctype.h>	Functions to determine the type contained in character data
+<errno.h>	Macros reporting error conditions
+<fenv.h> (C99)	Floating-point environment
+<float.h>	Limits of floating-point types
+<inttypes.h> (C99)	Format conversion of integer types
+<iso646.h> (C95)	Alternative operator spellings
+<limits.h>	Ranges of integer types
+<locale.h>	Localization utilities
+<math.h>	Common mathematics functions
+<setjmp.h>	Nonlocal jumps
+<signal.h>	Signal handling
+<stdalign.h> (C11)	alignas and alignof convenience macros
+<stdarg.h>	Variable arguments
+<stdatomic.h> (C11)	Atomic operations
+<stdbit.h> (C23)	Macros to work with the byte and bit representations of types
+<stdbool.h> (C99)	Macros for boolean type
+<stdckdint.h> (C23)	macros for performing checked integer arithmetic
+<stddef.h>	Common macro definitions
+<stdint.h> (C99)	Fixed-width integer types
+<stdio.h>	Input/output
+<stdlib.h>	General utilities: memory management, program utilities, string conversions, random numbers, algorithms
+<stdnoreturn.h> (C11)	noreturn convenience macro
+<string.h>	String handling
+<tgmath.h> (C99)	Type-generic math (macros wrapping math.h and complex.h)
+<threads.h> (C11)	Thread library
+<time.h>	Time/date utilities
+<uchar.h> (C11)	UTF-16 and UTF-32 character utilities
+<wchar.h> (C95)	Extended multibyte and wide character utilities
+<wctype.h> (C95)	Functions to determine the type contained in wide character data
+
+=============================================
+There are three major types of preprocessor directives that are used in a C program: macros, file inclusion, conditional compilation.
+
+Macros
+It is some constant value or an expression that can be defined using the #define command in our C Program. Examples :
+
+Defining a value
+#define G 9.8
+Defining an expression
+#define SUM(a,b) (a + b)
+
+file inclusion
+It is adding defined as content of a header file into our C Program, and it can be done using the #include command. Examples :
+
+Including standard input output header file
+#include <stdio.h>
+Including standard library functions header file
+#include <stdlib.h>
+conditional compilation
+It is running or skipping a piece of code at some macros condition (a constant value or an expression defined using #define), and it can be performed using commands like #ifdef, #endif, #ifndef, #if, #else and #elif in a C Program. Example :
+
+printing age if macro is defined, else printing not defined
+#include <stdio.h>
+
+// if we uncomment the below line, then the program will print AGE in the output.
+// #define AGE 18
+
+int main() {
+	#ifdef AGE
+		printf("Age is %d", AGE);
+	#else
+		printf("Not Defined");
+	#endif
+	
+	return 0;
+}
+
+Output :
+[Success] Your code was executed successfully
+Not Defined
+Now, To understand how and why preprocessor directives are executed before compilation, let us look at the process of how the whole compilation process works in a C Program.
+
+Let's suppose we have written a hello.c program to print Hello, World! in the output. The compilation process will generate an executable file, hello.exe from our hello.c program file.
+
+conditional compilation
+
+Compilation Process
+It is a process of converting Human Understandable (High Level) Code into Machine Understandable (Low Level) Code. Let us look at the steps involved in the compilation process.
+
+Step 1, We have a written C Program file with an extension of .c i.e. hello.c file.
+Step 2 is preprocessing of header files, all the statements starting with # (hash symbol) are replaced during the compilation process with the help of a pre-processor. It generates an intermediate file with .i file extension i.e. a hello.i file.
+Step 3 is a compilation of hello.i file, compiler software translates the hello.i file to hello.s file having assembly-level instructions (low-level code).
+Step 4, assembly-level code instructions are converted into a machine-understandable code (binary/hexadecimal form) by the assembler, and the file generated is known as the object file with an extension of .obj i.e. hello.obj file.
+Step 5, Linker is used to link the library files with the object file to define the unknown statements. It generates an executable file with .exe extension i.e. a hello.exe file.
+Next, we can run the hello.exe executable file to get the desired output on our output window.
+The below diagram shows all the steps involved in the compilation process.
+
+Compilation Process
+
+Now, let us see the definitions, syntax
+
+
+What is #define in C?
+#define is a preprocessor directive that is used to define macros in a C program.
+#define is also known as a macros directive.
+#define directive is used to declare some constant values or an expression with a name that can be used throughout our C program.
+Whenever a #define directive is encountered, the defined macros name replaces it with some defined constant value or an expression.
+
+
+What is #include in C?
+#include is a preprocessor directive that is used for file inclusion in a C program.
+#include is also known as a file inclusion directive.
+#include directive is used to add the content/piece of code from a reserved header file into our code file before the compilation of our C program.
+These header files include definitions of many pre-defined functions like printf(), scanf(), getch(), etc.
+Syntax of #define in C
+#define C_NAME value
+OR
+
+#define C_NAME expression
+CNAME : Name of the constant value or the expression. Generally, programmers define it in uppercase letters but it is not necessary like LIMIT, AREA(l,b), etc.
+
+value : It can be any constant value and can be of any data type int, char, float, string etc.
+
+expression: It can be any piece of code or any mathematical expression like (length * breadth), (a * a), etc.
+
+Example Syntax :
+
+#define PI 3.14
+#define AREA(l,b) (l * b)
+Note : #define directive doesn't require a ; (semi-colon) at the end of the statement.
+
+Syntax of #include in C
+#include <filename>
+OR
+
+#include "filename"
+filename : It is the header file name that is required in our C Program.
+
+Example Syntax :
+
+#include <stdio.h>
+#include "conio.h"
+
+==============================================
+
+-----------------------------------------------------
+The #define creates a macro, which is the association of an identifier or parameterized identifier with a token string. After the macro is defined, the compiler can substitute the token string for each occurrence of the identifier in the source file.
+
+Syntax
+#define identifier token-stringopt
+
+#define multiply( f1, f2 ) ( f1 * f2 )
+#define multiply( a1, a2 ) ( a1 * a2 )
+
+------------------------------------------------------
+#error directive 
+
+The #error directive emits a user-specified error message at compile time, and then terminates the compilation.
+
+Syntax
+#error token-string
+
+---------------------------------------------------------------------------------------
+Q1. What are operators in C?
+Operators are symbols known to the C compiler, which are used to perform operations on data. Operators can be used to perform operation directly on some value(C Literals) or on C variables. In the C language we can perform arithmetic operations, logical and relational operations, 
+ operations, etc. using the C operators on data.
+
+Q2. What are the different types of operators C supports?
+The C language supports the following type of operators:
+
+Arithmetic operators
+
+Relational operators
+
+Logical operators
+
+Bitwise operators
+
+Assignment operators
+
+Ternary operator
+
+Special operators like sizeof, &, *, . (dot) operator, -> (arrow) operator, [] (square bracket) operator, etc.
+
+Q3. What does * operator do in C?
+The * operator in the C language is a unary operator that returns the value of the object located at the address, specified after the * operator. For example q = *m will store the value stored at memory address m in the q variable, if m contains a memory address.
+
+The * operator is also used to perform multiplication of two values, where it acts as an arithmetic operator.
+
+Q4. What does != mean in C?
+It is a symbol of not equal to(!=) operator and used to check whether two values are not equal to each other or not. It is a relational operator and its opposite operator is an equal(==) operator which is used to check equality between two values or variables.
+
+If two values are not equal, then we will get 1 as the result of the comparison.
+
+Q5. What is & and * operators in C?
+Both are special types of operators and are used to perform memory-related operations. The & operator is used to get the address of a variable and the * operator is the complement of the & operator and is used to get the value of the object for located at a memory address.
+
+Q6. What does %d do in C?
+It is a format specifier that is used to print formatted output to the console. In the C language, it is used with the printf() function(C Input Output) to display integer value to the console. To print float, C provides %f, for char we use %c, for double we use %lf, etc.
+
+
+
+
+Find max from three nos using ternary operator:
+a>b & a>c ? printf("a is greater"): b>c ? printf("b is greater"):printf("C is greater");
+
+Bitwise Operators:/ Binary Operators:
+
+a=10	1010
+b=14	1110
+
+1] &(AND)  0 0 -> 0
+	 0 1 -> 0
+	 1 0 -> 0
+	 1 1 -> 1
+
+c =a&b  ->  1010
+	    1110
+	-------------
+	    1010     --->10
+--------------------------------------------------
+2] | (OR)	 0 0 -> 0
+	 0 1 -> 1
+	 1 0 -> 1
+	 1 1 -> 1
+c =a|b  ->    1010
+	      1110
+	-------------
+	      1110     --->14
+
+--------------------------------------------------
+3] ^ (X-OR)  0 0 -> 0   
+	     1 1-> 0
+	     0 1 ->1   
+	     1 0-> 1
+
+c =a^ b  ->  1010
+	     1110
+	-------------
+	     0100     --->4
+
+
+----------------------------------------------------
+
+Left Shift and Right Shift Operators in C
+4]Left Shift :
+
+Denoted as : << 
+
+Eg: N<<i (N: first operand, i: second operand)
+
+Takes two numbers, left shifts the bits of the first operand, the second operand decides the number
+ of places to shift. Or in other words left shifting an integer “x” with an integer “y” denoted as ‘(x<<y)’ 
+is equivalent to multiplying x with 2^y (2 raised to power y). 
+
+eg: lets take N=22; which is 00010110 in Binary Form.
+
+      Now, if “N is left-shifted by 2” i.e N=N<<2 then N will become N=N*(2^2). Thus, N=22*(2^2)=88 
+which can be written as 01011000.
+
+Example:
+/* C Program to demonstrate use of left shift
+operator */
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	// a = 5(00000101), b = 9(00001001)
+	unsigned char a = 5, b = 9;
+	clrscr();
+
+	// The result is 00001010
+	printf("a<<1 = %d\n", a<<1);
+	
+	// The result is 00010010
+	printf("b<<1 = %d\n", b<<1);
+	getch();
+}
+
+Output:
+a<<1 = 10
+b<<1 = 18
+
+------------exmple2:
+5] Right Shift :
+
+Denoted as : >>
+
+Eg: N>>i (N: first operand, i: second operand)
+
+Takes two numbers, right shifts the bits of the first operand, the second operand decides the number of places to shift. In other words right shifting an integer “x” with an integer “y” denoted as ‘(x>>y)‘ is equivalent to dividing x with 2^y. 
+
+eg: lets take N=32; which is 100000 in Binary Form.
+
+     Now, if “N is right-shifted by 2” i.e N=N>>2 then N will become N=N/(2^2). Thus, N=32/(2^2)=8 which can be written as 1000.
+
+		a = 00010000
+		b = 2
+		a << b = 01000000   
+		a >> b = 00000100  a>>2
+
+	In case of a << b, 2 bits are shifted to left in 00010000 and additional zeros are added to the 	opposite end, that is right, hence the value becomes 01000000
+
+	And for a >> b, 2 bits are shifted from the right, hence two zeros are removed from the right and two 	are added on the left, hence the value becomes 00000100
+
+/* C++ Program to demonstrate use of right
+shift operator */
+#include <stdio.h>
+#include<conio.h
+void  main()
+{
+	// a = 5(00000101), b = 9(00001001)
+	unsigned char a = 5, b = 9;
+	clrscr();
+
+	// The result is 00000010
+
+	printf("a>>1 = %d\n", a >> 1);
+
+	// The result is 00000100
+	printf("b>>1 = %d\n", b >> 1);
+	getch();
+}
+
+Exa:
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int x = 19;
+	
+	clrscr();
+	printf("x << 1 = %d\n", x << 1);
+	printf("x >> 2 = %d\n", x >> 1);
+	
+	getch();
+}
+-------------------------------------------
+	One's Complement (~) Operator:
+
+	The one's complement operator, will change all the 1's in the operand to 0, and all the 0's are set to 	1.
+
+	For example, if the orginal byte is 00101100, then after one's complement it will become 11010011.
+
+=========================================================
+Assignment Operators
+The sssignment operators are used to assign value to a variable. For example, if we want to assign a value 10 to a variable x then we can do this by using the assignment operator like: x = 10; Here, = (equal to) operator is used to assign the value.
+
+In the C language, the = (equal to) operator is used for assignment however it has several other variants such as +=, -= to combine two operations in a single statement.
+
+Operator		Description					Example
+
+(a and b are two variables, with where a=10 and b=5)
+
+=	assigns values from right side operand to left side operand	a=b, a gets value 5
++=	adds right operand to the left operand and assign the result to left operand	a+=b, is same as a=a+b, value of a becomes 15
+-=	subtracts right operand from the left operand and assign the result to left operand	a-=b, is same as a=a-b, value of a becomes 5
+*=	mutiply left operand with the right operand and assign the result to left operand	a*=b, is same as a=a*b, value of a becomes 50
+/=	divides left operand with the right operand and assign the result to left operand	a/=b, is same as a=a/b, value of a becomes 2
+%=	calculate modulus using two operands and assign the result to left operand	a%=b, is same as a=a%b, value of a becomes 0
+
+
+Ex:
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+
+   int a = 10;
+   clrscr();
+   // Assign
+   int result = a;
+   printf("result = %d \n",result);
+
+   // += operator
+   result += a;
+   printf("result = %d \n",result);
+
+   // -= operator
+   result -= a;
+   printf("result = %d \n",result);
+
+   // *= operator
+   result *= a;
+   printf("result = %d \n",result);
+
+  getch();
+
+}
+
+Output:
+result = 10
+result = 20
+result = 10
+result = 100
+
+---------------------------------------------------------------------------------------------
+
+Special Operator - &, *, sizeof, etc.
+Apart from arithmetic, relational, logical, assignment, etc. operators, C language uses some other operator such as:
+
+sizeof operator
+
+& operator
+
+* operator
+
+The . (dot) and -> (arrow) operators
+
+[] operator, etc.
+
+sizeof to find size of any entity(variable, array, etc.), & operator to find address of a variable, etc. You can see a list of such operators in the below table.
+
+Operator	Description	Example
+sizeof	returns the size(length in bytes) of entity, for eg. a variable or an array, etc.	sizeof(x) will return size of the variable x
+&	returns the memory address of the variable	&x will return address of the variable x
+*	represents pointer to an object. The * operator returns the value stored at a memory address.	
+m = &x (memory address of variable x)
+
+*m will return the value stored at memory address m
+
+. (dot) operator	used to access individual elements of a C structure or C union.	If emp is a structure with an element int age in it, then emp.age will return the value of age.
+-> (arrow) operator	used to access structure or union elements using a pointer to structure or union.	If p is a pointer to the emp structure, then we can access age element using p->age
+[] operator	used to access array elements using indexing	if arr is an array, then we can access its values using arr[index], where index represents the array index starting from zero
+We will learn about *, dot operator, arrow operator and [] operator as we move on in this tutorial series, for now let's see how to use the sizeof and & operators.
+
+=========================================================
+Type Conversion in C
+
+Type conversion in C is the process of converting one data type to another. The type conversion is only performed to those data types where conversion is possible. Type conversion is performed by a compiler. In type conversion, the destination data type can’t be smaller than the source data type. Type conversion is done at compile time and it is also called widening conversion because the destination data type can’t be smaller than the source data type. There are two types of Conversion:
+
+1. Implicit Type Conversion:
+Also known as ‘automatic type conversion’.
+
+A. Done by the compiler on its own, without any external trigger from the user.
+
+B. Generally takes place when in an expression more than one data type is present. In such conditions type conversion (type promotion) takes place to avoid loss of data.
+
+C. All the data types of the variables are upgraded to the data type of the variable with the largest data type.
+
+bool -> char -> short int -> int -> 
+unsigned int -> long -> unsigned -> 
+long long -> float -> double -> long double
+D. It is possible for implicit conversions to lose information, signs can be lost (when signed is implicitly converted to unsigned), and overflow can occur (when long long is implicitly converted to float).
+
+Ex:
+// An example of implicit conversion
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int x = 10; // integer x
+	char y = 'a'; // character c
+	float z;
+	clrscr();
+
+	// y implicitly converted to int. ASCII
+	// value of 'a' is 97
+	x = x + y;
+
+	// x is implicitly converted to float
+	 z = x + 1.0;
+
+	printf("x = %d, z = %f", x, z);
+	getch()
+}
+
+
+2. Explicit Type Conversion:
+This process is also called type casting and it is user-defined. Here the user can typecast the result to make it of a particular data type. The syntax in C Programming:
+
+(type) expression
+// C program to demonstrate explicit type casting
+#include<stdio.h>
+#include<conio.h>	
+void main()
+{
+	double x = 1.2;
+	clrscr();
+	
+	// Explicit conversion from double to int
+	int sum = (int)x + 1;
+	
+	printf("sum = %d", sum);
+	
+	getch();
+}
+
+======================================================
+Operator Precedence and Associativity in C
+
+Operator precedence determines which operation is performed first in an expression with more than one operators with different precedence.
+Example:10 + 20 * 30
+
+10 + 20 * 30 is calculated as 10 + (20 * 30)
+and not as (10 + 20) * 30
+
+Operators Associativity:
+Operators Associativity is used when two operators of same precedence appear in an expression. Associativity can be either Left to Right or Right to Left. 
+For example: ‘*’ and ‘/’ have same precedence and their associativity is Left to Right, so the expression “100 / 10 * 10” is treated as “(100 / 10) * 10”.
+
+
+Example:
+100 + 200 / 10 - 3 * 10
+
+100+(200/10)-(3*10)
+100+20-30
+90
+
+
+Operator	Description	
+  
+ 
+
+Associativity
+
+ 
+
+( ) 
+[ ] 
+. 
+-> 
+++ –  –	Parentheses (function call) (see Note 1) 
+Brackets (array subscript) 
+Member selection via object name 
+Member selection via pointer 
+Postfix increment/decrement (see Note 2)	left-to-right
+++ –  – 
++ – 
+! ~ 
+(type) 
+* 
+& 
+sizeof	Prefix increment/decrement 
+Unary plus/minus 
+Logical negation/bitwise complement 
+Cast (convert value to temporary value of type) 
+Dereference 
+Address (of operand) 
+Determine size in bytes on this implementation	right-to-left
+*  /  %	Multiplication/division/modulus		left-to-right
++  –	Addition/subtraction			left-to-right
+<<  >>	Bitwise shift left, Bitwise shift right	left-to-right
+<  <= 
+>  >=	Relational less than/less than or equal to 
+Relational greater than/greater  than or equal to	left-to-right
+==  !=	Relational is equal to/is not equal to	left-to-right
+&	Bitwise AND	left-to-right
+^	Bitwise exclusive OR		left-to-right
+|	Bitwise inclusive OR			left-to-right
+&&	Logical AND			left-to-right
+| |	Logical OR			left-to-right
+? :	Ternary conditional			right-to-left
+= 
++=  -= 
+*=  /= 
+%=  &= 
+^=  |= 
+<<=  >>=	Assignment 
+Addition/subtraction assignment 
+Multiplication/division assignment 
+Modulus/bitwise AND assignment 
+Bitwise exclusive/inclusive OR assignment 
+Bitwise shift left/right assignment		right-to-left
+,	Comma (separate expressions)	left-to-right
+
+
+=========================================================
+ if else Statement
+The if-else statement in C is used to perform the operations based on some specific condition. The operations specified in if block are executed if and only if the given condition is true.
+
+There are the following variants of if statement in C language.
+
+If statement
+If-else statement
+If else-if ladder
+Nested if
+
+If Statement
+The if statement is used to check some given condition and perform some operations depending upon the correctness of that condition. 
+Syntax:
+if(expression){  
+//code to be executed  
+}  
+
+If-else Statement
+The if-else statement is used to perform two operations for a single condition. The if-else statement is an extension to the if statement using which, we can perform two different operations, i.e., one is for the correctness of that condition, and the other is for the incorrectness of the condition. 
+
+Syntax:
+if(expression){  
+//code to be executed if condition is true  
+}else{  
+//code to be executed if condition is false  
+}  
+
+
+If else-if ladder Statement
+The if-else-if ladder statement is an extension to the if-else statement. It is used in the scenario where there are multiple cases to be performed for different conditions. In if-else-if ladder statement, if a condition is true then the statements defined in the if block will be executed, otherwise if some other condition is true then the statements defined in the else-if block will be executed, at the last if none of the condition is true then the statements defined in the else block will be executed. 
+
+Syntax:
+if(condition1){  
+//code to be executed if condition1 is true  
+}else if(condition2){  
+//code to be executed if condition2 is true  
+}  
+else if(condition3){  
+//code to be executed if condition3 is true  
+}  
+...  
+else{  
+//code to be executed if all the conditions are false  
+}  
+
+===========================================================================
+Switch Statement
+The switch statement in C is an alternate to if-else-if ladder statement which allows us to execute multiple operations for the different possibles values of a single variable called switch variable. Here, We can define various statements in the multiple cases for the different values of a single variable.
+
+Syntax:
+switch(expression){    
+case value1:    
+ //code to be executed;    
+ break;    
+case value2:    
+ //code to be executed;    
+ break;  
+......    
+    
+default:     
+ code to be executed if all cases are not matched;    
+}    
+================================================================
+What are loops?
+A Loop executes the sequence of statements many times until the stated condition becomes false. A loop consists of two parts, a body of a loop and a control statement. The control statement is a combination of some conditions that direct the body of the loop to execute until the specified condition becomes false. The purpose of the loop is to repeat the same code a number of times.
+===========================================================
+A for loop is a repetition control structure that allows you to efficiently write a loop that needs to execute a specific number of times.
+
+Syntax
+The syntax of a for loop in C programming language is −
+
+for ( init; condition; increment/decrement ) {
+   statement(s);
+}
+Here is the flow of control in a 'for' loop −
+
+The init step is executed first, and only once. This step allows you to declare and initialize any loop control variables. You are not required to put a statement here, as long as a semicolon appears.
+
+Next, the condition is evaluated. If it is true, the body of the loop is executed. If it is false, the body of the loop does not execute and the flow of control jumps to the next statement just after the 'for' loop.
+
+After the body of the 'for' loop executes, the flow of control jumps back up to the increment statement. This statement allows you to update any loop control variables. This statement can be left blank, as long as a semicolon appears after the condition.
+
+The condition is now evaluated again. If it is true, the loop executes and the process repeats itself (body of loop, then increment step, and then again condition). After the condition becomes false, the 'for' loop terminates.
+======================================================
+nested loops in C
+C programming allows to use one loop inside another loop. The following section shows a few examples to illustrate the concept.
+
+Syntax
+The syntax for a nested for loop statement in C is as follows −
+
+for ( init; condition; increment ) {
+
+   for ( init; condition; increment ) {
+      statement(s);
+   }
+   statement(s);
+}
+The syntax for a nested while loop statement in C programming language is as follows −
+
+while(condition) {
+
+   while(condition) {
+      statement(s);
+   }
+   statement(s);
+}
+The syntax for a nested do...while loop statement in C programming language is as follows −
+
+do {
+   statement(s);
+
+   do {
+      statement(s);
+   }while( condition );
+
+}while( condition );
+A final note on loop nesting is that you can put any type of loop inside any other type of loop. For example, a 'for' loop can be inside a 'while' loop or vice versa.
+=======================================================
+What is While Loop?
+--------------------------------------------------------------------
+ It is an entry-controlled loop. In a while loop, a condition is evaluated before processing a body of the loop. If a condition is true, then and only then the body of a loop is executed.
+
+After the body of a loop is executed, the control again goes back to the beginning, and the condition is checked. If it is true, the same process is executed until the condition becomes false. Once the condition becomes false, the control goes out of the loop.
+
+In a while loop, if the condition is not true, then the body of a loop will not be executed, not even once.
+
+=====syntax======
+
+while (condition) {
+Statements; // loop body
+}
+
+
+
+What is a Do-While Loop?
+-------------------------------------------------------------------
+A Do-while loop is similar to the while loop except that the condition is always executed after the body of a loop. It is also called an exit-controlled loop.
+
+In the do-while loop, the body of a loop is always executed at least once. After the body is executed, then it checks the condition. If the condition is true, then it will again execute the body of a loop. Otherwise, the control is transferred out of the loop.
+
+syntax
+===========
+do {
+statements
+} while (expression);
+
+------------------------------------------------------------------
+KEY DIFFERENCES:
+----------------------------------------------------------------
+While loop checks the condition first and then executes the statement(s), whereas do while loop will execute the statement(s) at least once, then the condition is checked.
+While loop is entry controlled loop whereas do while is exit controlled loop.
+In the while loop, we do not need to add a semicolon at the end of a while condition but we need to add a semicolon at the end of the while condition in the do while loop.
+While loop statement(s) is executed zero times if the condition is false whereas do while statement is executed at least once.
+While loop allows initialization of counter variable before starting the body of a loop whereas do while loop allows initialization of counter variable before and after starting the body of a loop.
+
+
+Which One Should We Choose?
+-----------------------------------------------------------------
+When checking a condition, if the first iteration is compulsory, we need to use the while loop. It can also be used if the number of iterations is unknown or uncertain.
+
+Do while loop mainly requires in the case where we have to execute the loop minimum one time. The do-while loop is typically needed in a menu-driven programming language where the final condition is based upon the end-user.
+
+=========================================================================================
+Break:
+When break statement is encountered inside a loop, the loop is immediately exited and the program continues with the statement immediately following the loop.when the loops are nested, the break would only exit from the loop containing it.
+
+Example:
+	while(.......)
+	{
+	       	...........
+		if(condition)
+	|-----------------------break;
+	|	............
+	|----------->	     .................
+
+	}
+
+Continue:
+The continue as the name implies causes the loop to be continued with the next iteration after skipping following statements in between. The continue statements tells the compiler."Skip the following statements and continue with the next iteration".
+
+example:
+	while(condition)
+	{
+		.................
+		if(condition)
+		     continue;
+		.................
+	}
+Example:
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int a=10;
+	clrscr();
+	while(1)
+	{
+		a--;	
+		if(a==2)
+		      break;
+		if(a%2!=0)
+		      continue;
+		printf("%d",a);
+	}
+}
+
+Output:
+8 6 4 
+
+-------------------------------------------------------------------------------
+The unconditional control statements provided by C are:
+
+break statement
+continue statement
+goto statement
+
+Goto:
+It is used to branch unconditionally from one point to another in  the program. The goto requires a label to identify the place where the branch is to be made. A label is any valid variable name and must be followed by colon(:) .
+
+syntax:
+	label:
+	Statement;
+	...........
+	...........
+	goto label;
+-----------------------------------------------------------------------------------
+Break: 
+Break Statement:
+This is used for two important purposes:
+
+The break statement is used to terminate the switch case statement.
+It is used to terminate the looping statements like for, while and do-while.
+Ex:
+#include <stdio.h>
+#include<conio.h>
+void print_name( int roll_number) 
+{    
+  switch(roll_number)
+  {        
+    case 1:
+       printf("\n Name is A");
+       break;
+    case 2:
+       printf("\n Name is B");
+       break;
+    case 3:
+       printf("\n Name is C");
+       break;
+    default:
+       printf("\n Name is D");
+       break;
+    }
+}
+void main()
+{
+   int roll_number = 1;
+   clrscr();
+   print_name(roll_number);
+   getch();
+}
+Output:
+
+Name is A
+
+--------------------------------------------------------------------------------------
+continue statement:
+
+It is similar to break statement, the only difference lies that break statement terminates the loop whereas continue statement, forces the control to reach for the next iteration of the loop that is to the beginning of the loop.
+
+When we use continue statement with while and do-while statements the execution control directly jumps to the condition. When we use continue statement with for statement the execution control directly jumps to the modification portion (increment/decrement/any modification) of the for loop.
+
+Ex:
+void main()
+{
+ int i;
+ clrscr();
+  for (i = 0 ;i <=10; i ++) {
+      if (i == 5)
+        continue;
+      printf("%d  ", i);
+      
+  }
+}
+Output:
+
+0 1 2 3 4 6 7 8 9 10
+
+---------------------------------------------------------------------------------------
+Difference between break and continue:
+
+1.It terminates the execution of remaining iteration of the loop.
+   Continue terminates only the current iteration of the loop.
+2. Break resumes the control of the program to the end of loop enclosing that break.
+   Continue resumes the control of the program to the next iteration of that loop enclosing continue.
+3. It causes early termination of loop.
+   Continue causes early execution of the next iteration.
+4. Break stops the continuation of loop.
+   Continue do not stops the continuation of loop, it only stops the current iteration.
+5. Break can be used with 'switch','label'.
+  Continue can not be executed with 'switch' and 'labels'.
+
+----------------------------------------------------------------------
+exit():
+The exit () function is used to break out of a loop. This function causes an immediate termination of the entire program done by the operation system.
+Ex:
+#include<stdio.h>
+#include<conio.h>
+void main(){
+   char ch;
+   clrscr();
+   printf("B: Breakfast");
+   printf("L: Lunch");
+   printf("D: Dinner");
+   printf("E: Exit");
+   printf("Enter your choice:");
+   do{
+      ch = getchar();
+      switch (ch){
+         case 'B' :
+         printf ("time for breakfast");
+         break;
+         case 'L' :
+         printf ("time for lunch");
+         break;
+         case 'D' :
+         printf ("time for dinner");
+         break;
+         case 'E' :
+         exit(0); /* return to operating system */
+      }
+   } while (ch != 'B' && ch != 'L' && ch != 'D');
+   getch();
+}
+
+
+Output:
+
+B: Breakfast
+L: Lunch
+D: Dinner
+E: Exit
+Enter your choice:D
+Time for dinner
+===========================================================================================
+		Array
+===========================================================================================
+
+An array is a variable that can store multiple values. For example, if you want to store 100 integers, you can create an array for it.
+
+Declaration:
+-----------
+dataType arrayName[arraySize];
+
+
+int data[100];
+float mark[5];
+
+Initialization:
+-------------
+int mark[5] = {19, 10, 8, 17, 9};
+int mark[] = {19, 10, 8, 17, 9};
+
+Example:
+---------
+// Program to take 5 values from the user and store them in an array
+// Print the elements stored in the array
+#include<stdio.h>
+#include<conio.h>
+void main() {
+  int values[5];
+	int i;
+clrscr();k]]\
+
+
+
+
+
+
+  printf("Enter 5 integers: ");
+
+  // taking input and storing it in an array
+  for( i = 0; i < 5; ++i) {
+     scanf("%d", &values[i]);
+  }
+
+  printf("Displaying integers: ");
+
+  // printing elements of an array
+  for( i = 0; i < 5; ++i) {
+     printf("%d\n", values[i]);
+  }
+  getch();
+}
+
+
+---------------------------------------------------------------------
+In C, you can create an array of arrays. These arrays are known as multidimensional arrays. For example,
+float x[3][4];
+
+Similarly, you can declare a three-dimensional (3d) array. For example,
+
+float y[2][4][3];
+
+
+
+// Different ways to initialize two-dimensional array
+
+int c[2][3] = {{1, 3, 0}, {-1, 5, 9}};
+         
+int c[][3] = {{1, 3, 0}, {-1, 5, 9}};
+                
+int c[2][3] = {1, 3, 0, -1, 5, 9};
+
+
+int test[2][3][4] = {
+    {{3, 4, 2, 3}, {0, -3, 9, 11}, {23, 12, 23, 2}},
+    {{13, 4, 56, 3}, {5, 9, 3, 5}, {3, 1, 4, 9}}};
+
+--------------------------------------------------------------------
+example1
+
+
+// C Program to Insert an element
+// at a specific position in an Array
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int arr[100] = { 0 };
+	int i, x, pos, n = 10;
+
+	// initial array of size 10
+	for (i = 0; i < 10; i++)
+		arr[i] = i + 1;
+
+	// print the original array
+	for (i = 0; i < n; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+
+	// element to be inserted
+	x = 50;
+
+	// position at which element
+	// is to be inserted
+	pos = 5;
+
+	// increase the size by 1
+	n++;
+
+	// shift elements forward
+	for (i = n - 1; i >= pos; i--)
+		arr[i] = arr[i - 1];
+
+	// insert x at pos
+	arr[pos - 1] = x;
+
+	// print the updated array
+	for (i = 0; i < n; i++)
+		printf("%d ", arr[i]);
+	printf("\n");
+
+	getch();
+}
